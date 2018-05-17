@@ -89,6 +89,15 @@
     //it's a 'transition end event!'
   
   window.addEventListener('keydown', playSound);
+  
+
+  // ALTERNATIVE SOLUTION below - comment out lines 87 and 88 instead
+  // behavior is slightly different, check it out
+  
+  // window.addEventListener('keyup', function(e) {
+  //   const target = document.querySelector(`.key[data-key="${e.keyCode}"`);
+  //   target.classList.remove('playing');
+  // });
 
 
   //window.addEventListener('keyup', function(e) {
