@@ -7,7 +7,7 @@
 </head>
 <body>
 
-
+<!-- NOT THE STARTER CODE - THIS ONE IS COMPLETE! -->
   <div class="keys">
     <div data-key="65" class="key">
       <kbd>A</kbd>
@@ -58,7 +58,42 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+  
+  var playSound = function(e) {
+    // console.log(e);
+    // console.log(e.keyCode);
 
+    //selects an audio element
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"`);
+    //console.log(audio);
+
+    if(!audio) { return; } //stop the fxn from running altogether if the key isnt valid
+    audio.currentTime = 0; //rewinds to the start so you can loop on top of another
+    audio.play(); //play the sound
+
+
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"`);
+    key.classList.add('playing'); // key.addClass('playing');
+    //console.log(key);
+  };
+
+  var removeTransition = function(e) {
+    //a lot of transitions occur with each key press
+    //so we need to pick out the specific one that we're concerned about, which is the longest
+    if(e.propertyName !== 'transform') { return; } 
+    this.classList.remove('playing');
+  };
+
+  const keys = document.querySelectorAll('.key'); //get all keys
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition)); //once transitioned, run removetransition
+    //it's a 'transition end event!'
+  
+  window.addEventListener('keydown', playSound);
+
+
+  //window.addEventListener('keyup', function(e) {
+
+  //});
 </script>
 
 
